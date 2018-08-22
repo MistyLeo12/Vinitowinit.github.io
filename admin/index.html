@@ -1,0 +1,123 @@
+<?php 
+	//Check Login Status, push all of that junk to the js core. Refuse access to the page if not logged in.
+	require_once("php/config_fmc.php");
+
+
+?>
+<html lang ="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="login">
+	<meta name="author" content="jordanMalof_nickCzarnek">
+
+	<title>FMC overview</title>
+	
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/docs.min.css">
+	<!--Script Includes-->
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/jquery.form.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.battatech.excelexport.min.js"></script>
+	<!--<script src="js/tools.js"></script>
+	<script src="js/fmcClassUploadList_v3.js"></script>-->
+	<!--<script src="js/docs.min.js"></script>-->
+	
+	<!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+				<a href="settings.html" role="button" class="btn btn-default btn-large" style="width:100px">Settings</a>
+			</ul>
+			<h3 class="text-muted"><b>F</b>ix<b>M</b>y<b>C</b>ampus</h3>
+		</div>
+		
+	</div>
+	<div class="clearfix visible-xs-block"></div>
+	 
+	<div class="bs-docs-header" id="content">
+		<div class="container">
+			<h1>Administrator page</h1>
+			<p>Click a link to open the details for a request</p>
+		</div>
+	</div>
+
+	<br>
+	
+	<div class="container" id="buttonRow">
+		<div class="row">
+			<div class="col-md-2">
+			</div>
+			
+			<div class="col-md-1">
+				<button type="button" class="btn btn-default btn-lg" id="olderButton">
+					<span class="glyphicon glyphicon-backward"></span>  Older
+				</button>
+			</div>
+			
+			<div class="col-md-1">
+			</div>
+			
+			<div class="col-md-2">
+				<button type="button" class="btn btn-default btn-lg" id="refreshDataButton">
+					Update list <span class="glyphicon glyphicon-refresh"></span>
+				</button>
+			</div>
+			
+			
+			<div class="col-md-2">
+				
+				<input type="checkbox" id="onlyUnresolved">Only show unresolved
+				
+			</div>
+			<div class="col-md-1">
+				<button type="button" class="btn btn-default btn-lg" id="newerButton">
+					Newer  <span class="glyphicon glyphicon-forward"></span>
+				</button>
+			</div>
+			<div class="col-md-3">
+			</div>
+		</div>
+	</div>
+	
+	<br>
+	<div class="container">
+		<table class="table table-hover" id="reqTable" style="table-layout: fixed; width: 100%">
+			<thead>
+				<tr>
+					<th class="col-md-1">Date</th>
+					<th class="col-md-1">Name</th>
+					<th class="col-md-3" style="word-wrap: break-word;overflow: hidden; text-align: left; valign: top; whitespace: nowrap;">Message</th>
+					<th class="col-md-2">FMC member assigned</th>
+					<th class="col-md-1">Unique ID</th>
+					<th class="col-md-1">Status</th>
+					<th class="col-md-2">FMC department</th>
+					<th class="col-md-1">Image</th>
+				</tr>
+			</thead>
+			<tbody id="reqTableBody">
+				<tr>
+					<td></td>
+					<td></td>
+					<td>Loading...</td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button type="button" class="btn btn-primary" id='exportButton'>Download to excel</button>
+	</div>
+
+	<br>
+</body>
+
+	<script src="js/fmc.js"></script>
+	<script src="js/fmc-ui.js"></script>
+</html>

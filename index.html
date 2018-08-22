@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <title>Fix My Campus - Home</title>
+        <meta name="viewport" content="width=device-width">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="mobile-web-app-capable" content="yes">
+        <link rel="icon" sizes="192x192" href="image/logo-homescreen-192x192.png">
+        <!-- For Safari add to homescreen -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon" sizes="57x57" href="image/logo-homescreen-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="image/logo-homescreen-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="image/logo-homescreen-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="image/logo-homescreen-144x144.png" />
+        
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap theme -->
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/loader.css" rel="stylesheet">
+        <!-- To add to homescreen -->
+        <link href="json/manifest.json" rel="manifest">
+        
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body role="document">
+        <div id="fb-root"></div>
+        <!--<div id="myLoadingDiv" class="loader" style="text-align: center">Loading... This may take some time, please be patient</div>-->
+        <div style="text-align: center">
+            <a href="index.html">
+                <img src="image/logo.jpg" alt="..." width="300" height="150">
+            </a>
+        </div>
+        <div class="container-fluid">
+            <div id="login" class="row" style="display: none">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-lg btn-primary" onclick="cb_Login()">Login with Facebook</button>
+                </div>
+            </div>
+            <div id="userInfo" class="row" style="display: none">
+                <div class="col-sm-12">
+                    <p style="text-align: center">Logged in as: <span id="userName"></span></p>
+                </div>
+                <div class="col-sm-12">
+                    <p style="text-align: center">via <a href="https://www.facebook.com" target="_blank" class="text-primary">Facebook</a></p>
+                </div>
+            </div>
+            <hr>
+            <div id="accessInfo" class="row" style="display: none">
+                <div class="col-sm-12">
+                    <p id ="accessInfoTxt" style="text-align: center">By logging in, you're saying that it's okay for this app to post to the <em>Duke Fix My Campus</em> facebook page on your behalf. We won't post anywhere else, and never without you explicitly saying "submit a request."</p>
+                </div>
+            </div>
+            <div id="fbRedirect" class="row" style="display: none">
+                <div class="col-sm-12">
+                    <button class="btn btn-block btn-lg btn-primary" onclick="cb_fbRedirect()">Join FMC on Facebook</button>
+                </div>
+            </div>
+            <div id="makeRequest" class="row" style="display: none">
+                <div class="col-sm-12">
+                    <button id="btn_makeRequest" class="btn btn-block btn-lg btn-info" onclick="cb_MakeRequest()">Make Request</button>
+                </div>
+            </div>
+            <hr/>
+            <div id="about" class="row" style="display: none">
+                <div class="col-sm-12">
+                    <button id="btn_about" class="btn btn-block btn-lg btn-info" onclick="cb_About()">About</button>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <script src="js/jquery-1.11.2.min.js"></script>
+        <script src="js/jquery-ui.js" async></script>
+        <script>
+        // Load the Facebook SDK asynchronously
+        (function(d, s, id) {
+        console.log('Loading SDK Asynchronously');
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
+        window.fbAsyncInit = function(){
+            console.log('Initializing Facebook...');
+            FB.init({
+              appId      : '670916569623587',
+              status     : true,
+              cookie     : true,  // enable cookies to allow the server to access 
+                                  // the session
+              xfbml      : true,  // parse social plugins on this page
+              version    : 'v2.1' // use version 2.1
+            });
+            console.log('Facebook Initialized');
+            
+            FB.getLoginStatus(function(response){
+                if(response.status === 'connected') {
+                    console.log(JSON.stringify(response));  
+                    localStorage.setItem('fb_UserAccessToken',response.authResponse.accessToken);
+                    console.log('User Access Token: '+localStorage.getItem('fb_UserAccessToken'));
+                    loadHomePage();
+                }
+                else {
+                    loadLogin();
+                }
+                //$(".loader").fadeOut("slow");
+            });
+        };
+        
+        function loadHomePage(){
+            document.getElementById("login").style.display = 'none';
+            document.getElementById("accessInfo").style.display = 'none';
+            document.getElementById("userInfo").style.display = 'block';
+            document.getElementById("fbRedirect").style.display = 'none';
+            document.getElementById("makeRequest").style.display = 'block';
+            document.getElementById("about").style.display = 'block';
+            
+            console.log('Welcome! Fetching your information....');
+            FB.api('/me', 
+                function(response) {
+                console.log(JSON.stringify(response));
+                document.getElementById("userName").innerHTML = response.name;        
+                localStorage.setItem('fb_UserName',response.name);
+                console.log('User Name: '+localStorage.getItem('fb_UserName'));
+            });
+            
+//            console.log('Finding if you are part of FMC FB group.... ');
+//            FB.api('/me/groups',
+//                function (response) {
+//                    if (response && !response.error) {
+//                        var responseStr = JSON.stringify(response);
+//                        var idx = responseStr.indexOf('fmc_test');
+//                        console.log(responseStr);
+//                        if(idx === -1){
+//                            document.getElementById("login").style.display = 'none';
+//                            document.getElementById("accessInfo").style.display = 'block';
+//                            document.getElementById("accessInfoTxt").innerHTML = 'It appears that you are not part of FMC Facebook group. Please join the group first!';
+//                            document.getElementById("fbRedirect").style.display = 'block';
+//                            document.getElementById("userInfo").style.display = 'block';
+//                            document.getElementById("makeRequest").style.display = 'none';
+//                            document.getElementById("about").style.display = 'none';
+//                        }
+//                        else{
+//                            document.getElementById("login").style.display = 'none';
+//                            document.getElementById("accessInfo").style.display = 'none';
+//                            document.getElementById("userInfo").style.display = 'block';
+//                            document.getElementById("fbRedirect").style.display = 'none';
+//                            document.getElementById("makeRequest").style.display = 'block';
+//                            document.getElementById("about").style.display = 'block';
+//                        }
+//                    }
+//            });
+        }
+        
+        function loadLogin(){
+            document.getElementById("login").style.display = 'block';
+            document.getElementById("accessInfo").style.display = 'block';
+            document.getElementById("fbRedirect").style.display = 'none';
+            document.getElementById("userInfo").style.display = 'none';
+            document.getElementById("makeRequest").style.display = 'none';
+            document.getElementById("about").style.display = 'none';
+            document.getElementById("userName").innerHTML = '';
+        }
+        
+        function cb_Login(){
+            FB.login(function(response) {
+                if(response.authResponse){
+                    console.log(JSON.stringify(response));
+                    console.log('Facebook Login succeeded');
+                    localStorage.setItem('fb_UserAccessToken',response.authResponse.accessToken);
+                    console.log('User Access Token: '+localStorage.getItem('fb_UserAccessToken'));
+                    loadHomePage();
+                }
+                else
+                {
+                    console.log(JSON.stringify(response));
+                    console.log('User cancelled login or did not fully authorize.');
+                }
+            }, {
+                scope: 'public_profile,email,publish_actions',
+                return_scopes: true
+            });
+        }
+        
+        function cb_fbRedirect(){
+            window.location.href = "https://www.facebook.com/groups/1920852034722181/";
+        }
+        
+        function cb_MakeRequest(){
+            window.open("request.html",'_self');
+        }
+        
+        function cb_About(){
+            window.open("about.html",'_self');
+        }
+    </script>
+    </body>
+</html>

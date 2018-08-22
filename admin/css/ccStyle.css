@@ -1,0 +1,467 @@
+/*
+Nicholas Czarnek
+Kedar Prabhudesai, Jordan Malof
+copyright 27 November 2013
+This is the style sheet for CampusCompanion.co
+
+References:
+http://www.cssnewbie.com/example/horizontal-menu/
+http://stackoverflow.com/questions/2821596/100-height-with-fixed-footer-and-embedded-google-map?rq=1
+http://johnsardine.com/freebies/dl-html-css/simple-little-tab/
+http://www.impressivewebs.com/center-multiple-divs/
+
+*/
+
+
+
+html {
+	position: relative;
+	min-height: 100%;
+}
+
+h1 {
+	font: italic bold 30px Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	width:100%;
+	text-align:center;
+}
+
+#officerStudent {
+	font: bold 16px Arial, Helvetica, sans-serif;
+	width:100%;
+	text-align:center;
+}
+
+h2 {
+	font: bold 16px Arial, Helvetica, sans-serif;
+	width:100%;
+	text-align:center;
+}
+
+body{
+	font: small Arial, Helvetica, sans-serif;
+	margin: 0 0 0px;
+	padding:0;
+	width: 100%;
+	min-width:960px;
+	overflow-x: auto;
+	
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+	min-width:960px;
+	background-color: #808080;/*#0066CC*//*#505050*/
+	color: #fff;
+	clear:both;
+}
+
+#mainMapWrap {
+	background: none repeat scroll 0 0 #FFF;
+	height:100%;
+	margin:0 auto;
+	min-height:100%;
+	overflow:hidden;
+	position: absolute;/*this was changed on 1 December from relative*/
+	width:100%;
+	min-width:960px;
+	
+	/*height:auto !important;  real browsers */
+	height:100%; /* IE6: treaded as min-height*/
+
+	min-height:100%; /* real browsers */
+}
+#mapsLeftContent {
+	bottom:0;
+	float: left;
+	overflow: hidden;
+	padding-bottom: 70px;
+	margin-top:100px;
+	position:absolute;
+	top:0;
+	width:70%;
+	min-width: 250px;
+}
+
+#mapsRightContent {
+	bottom:0;
+	/*float: right;*/
+	overflow: hidden;
+	margin-top:105px;
+	margin-bottom: 50px;
+	margin-left:auto;
+	margin-right:auto;
+	position:absolute;
+	top:0;
+	right:0;
+	width:30%;
+	min-width:250px;
+	text-align:center;
+}
+
+
+#innerRightBlock {
+	background-color: #E0E0E0;
+	overflow:hidden;
+	height:100%;
+	border-left:2px solid blue;
+	margin:0 auto;
+	text-align:center;
+	padding:5px;
+
+}
+
+#tableWrap {
+	text-align:center;
+	width:100%;
+	margin:auto;
+	overflow:hidden;
+	white-space: nowrap;
+
+}
+
+
+.tableChild {
+	width: 120px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	margin:0 auto;
+	margin-left:30px;
+	margin-right:30px;
+	
+}
+
+.tableSlider {
+	width: 20px;
+	display:inline-block;
+	vertical-align:middle;
+	text-align:center;
+	margin:0 auto;
+	margin-left:20px;
+	margin-right:0px;
+	
+}
+
+.paddedContent 
+{
+    height:100%;
+    margin: 1em;
+	
+}
+
+#navWrap {
+	top: 0px;
+	width: 100%;
+	min-width: 960px;
+	/*height: auto;*/
+	background-color: #505050;/*#505050*/
+	margin:0 auto;
+	overflow: hidden;
+}
+#navContent {
+	width: 960px;
+	margin: 0 auto;
+}
+#navBar { 	
+	width: 100%;
+	
+	float: left;
+	padding: 0;
+	list-style:none;
+	height: relative;
+	min-height: 1em;
+	overflow: hidden;
+}
+
+#navBar ul {
+	list-style: none;
+}
+
+#navBar li {
+	float:left;
+}
+#navBar li a {
+	display: block;
+	width: 160px;
+	height: inherit;
+	text-decoration: none;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	color: #C8C8C8;
+}
+
+#navBar li a:hover {
+	display: block;
+	height: inherit;
+	text-decoration: none;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+	font-size: 21px;
+	color: #fff;
+}
+
+
+.logoutButton {
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	width: 160px;
+	font-weight: bold;
+	font-size: 20px;
+	color: #C8C8C8;
+}
+
+
+.logoutButton:hover {
+	background:none!important;
+	border:none; 
+	padding:0!important;
+	width: 160px;
+	font-weight: bold;
+	font-size: 21px;
+	color: #fff;
+}
+
+.tableButton {
+	border:2px solid black;
+	padding:0!important;
+	width: 120px;
+	font-weight: bold;
+	font-size: 16px;
+	color: #000;
+}
+
+#button{
+	padding:.5em;
+	width:120px;
+} /* Increase padding */
+
+/*
+Login form courtesy of:
+http://www.cssflow.com/snippets/login-form/demo/html
+provided under the permissive MIT license
+*/
+.login {
+  position: relative;
+  margin: 0 auto;
+  padding: 0px 20px 0px;
+  width: 250px;
+  height:306px;
+  background: #E0E0E0;
+  border: 3px solid black;
+  vertical-align: middle;
+  @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: -8px; right: -8px; bottom: -8px; left: -8px;
+    z-index: -1;
+    background: rgba(black, .08);
+    border-radius: 4px;
+  }
+
+  h1 {
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+    @include linear-gradient(top, whiteffd, #eef2f5);
+    @include box-shadow(0 1px #f5f5f5);
+  }
+
+  p { margin: 20px 0 0; }
+  p:first-child { margin-top: 0; }
+
+  input[type=text], input[type=password] { width: 278px; }
+
+  p.remember_me {
+    float: left;
+    line-height: 31px;
+
+    label {
+      font-size: 18px;
+      color: #777;
+      cursor: pointer;
+    }
+
+    input {
+      position: relative;
+      bottom: 1px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+  }
+
+  p.submit { text-align: right; }
+}
+
+.blackBar {
+	float: left;
+	position: relative;
+	width: 100%;
+	margin:0;
+	height:5px;
+	background-color:#000;
+	overflow:hidden;
+}
+
+.colorBarThick {
+	position: relative;
+	width: 100%;
+	margin:0;
+	height:50px;
+	background-color: #0066CC;/*#E0E0E0*/
+	overflow:hidden;
+}
+
+.blackBarMed {
+	float: left;
+	position: relative;
+	width: 100%;
+	margin:0;
+	height:25px;
+	background-color:#000;
+	overflow:hidden;
+}
+
+/*See the background picture*/
+.windowSpacer {
+	width: 100%;
+	height:400px;
+
+}
+
+.mapWrap {
+	width:960px;
+	height:auto;
+	border: 5px inset #505050;
+}
+
+.contentWrapper {
+	position: relative;
+	height: inherit;
+	width: 960px;
+	margin:0 auto;
+	padding: 0px;
+	overflow:hidden;
+	vertical-align: center;
+}
+
+.subHalfLeft {
+	display:table;
+	position:relative;
+	float: left;
+	width: 480px;
+	height: inherit;
+	margin:auto;
+	padding:0;
+	overflow: hidden;
+}
+
+
+.subHalfRight {
+	display:table;
+	position:relative;
+	float: right;
+	width: 480px;
+	height: inherit;
+	margin:auto;
+	padding:0;
+	overflow: hidden;
+}
+
+.vertCentTBox {
+	display:table-cell;
+	top:50%;
+	height:relative;
+	vertical-align:middle;
+}
+
+.vertCentIBox {
+	display:table-cell;
+	top:50%;
+	height:relative;
+	vertical-align:middle;
+	text-align:center;
+}
+
+.bigTextBoxGrey {
+	background-color: #0066CC;
+	font-weight: bold;
+	font-size: 30px;
+	color: #fff;/*#C8C8C8*/
+	padding: 5px;
+}
+
+.smallTextBox {
+	/*background-color: #505050;*/
+	font-weight: bold;
+	font-size: 15px;
+	color: #000;
+	padding: 5px;
+}
+
+
+
+.blackBar {
+	width:100%;
+	float: left;
+	height: 2px;
+	margin:0 auto;
+	background-color: #000;
+	clear:both;
+}
+
+
+img.bg {
+	z-index: -1;
+
+	/* Set rules to fill background */
+	min-height: 100%;
+	min-width: 1024px;
+
+	/* Set up proportionate scaling */
+	width: 100%;
+	min-width:960px;
+	height: auto;
+
+	/* Set up positioning */
+	position: fixed;
+	top: 0;
+	left: 0;
+
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+}
+
+.clearfix:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+

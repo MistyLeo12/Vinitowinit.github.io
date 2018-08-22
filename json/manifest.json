@@ -1,0 +1,14 @@
+{
+  "name": "Duke Fix My Campus",
+  "icons": [
+    {
+      "src": "../image/logo-homescreen.png",
+      "sizes": "36x36",
+      "type": "image/png",
+      "density": "1.0"
+    },
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "landscape"
+}
